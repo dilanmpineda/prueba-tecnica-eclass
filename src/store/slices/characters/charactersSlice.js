@@ -7,7 +7,6 @@ export const favCharactersSlice = createSlice({
     },
     reducers: {
         addCharacter: (state, action) => {
-            console.log(localStorage.getItem('favorites'));
             let characterId = action.payload.characterId;
             let inFavorites = action.payload.inFavorites;
             if (inFavorites) {
@@ -15,7 +14,6 @@ export const favCharactersSlice = createSlice({
                 let index = favoritesToUpdate.indexOf(characterId);
                 favoritesToUpdate.splice(index, 1);
                 state.favorites = [...favoritesToUpdate];
-                console.log(favoritesToUpdate);
                 if(favoritesToUpdate.every(value => value == "")){
                     localStorage.removeItem('favorites');
                 } else {
