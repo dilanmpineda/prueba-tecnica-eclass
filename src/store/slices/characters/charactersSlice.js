@@ -15,8 +15,13 @@ export const favCharactersSlice = createSlice({
                 let index = favoritesToUpdate.indexOf(characterId);
                 favoritesToUpdate.splice(index, 1);
                 state.favorites = [...favoritesToUpdate];
-                localStorage.removeItem('favorites');
-                localStorage.setItem('favorites', favoritesToUpdate);
+                console.log(favoritesToUpdate);
+                if(favoritesToUpdate.every(value => value == "")){
+                    localStorage.removeItem('favorites');
+                } else {
+                    localStorage.removeItem('favorites');
+                    localStorage.setItem('favorites', favoritesToUpdate);
+                }
                 return;
             }
             state.favorites = [...state.favorites, characterId];
